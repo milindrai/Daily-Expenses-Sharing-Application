@@ -4,7 +4,7 @@ const { addExpense, getIndividualExpenses, getOverallExpenses, downloadBalanceSh
 const authMiddleware = require('../middlewares/authMiddleware');
 
 router.post('/', authMiddleware, addExpense);
-router.get('/', authMiddleware, getIndividualExpenses);
+router.get('/individual', authMiddleware, getIndividualExpenses);
 router.get('/overall', authMiddleware, getOverallExpenses);
 router.get('/balance-sheet', authMiddleware, downloadBalanceSheet);
 
