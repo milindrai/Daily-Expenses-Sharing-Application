@@ -43,7 +43,7 @@ exports.logoutUser = (req, res) => {
     res.status(200).json({ message: 'Logout successful' });
 };
 
-exports.getUserDetails = async (req, res) => {
+exports.getUser = async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
         res.status(200).json(user);
