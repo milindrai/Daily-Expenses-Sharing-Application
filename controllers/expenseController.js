@@ -13,8 +13,20 @@ exports.addExpense = async (req, res) => {
                 amount: splitAmount
             }));
         } else if (splitMethod === 'exact') {
+            const totalExactAmount = participants.reduce((sum, participant) => sum + participant.amount, 0);
+
+            if (totalExactAmount !== amount) {
+                return res.status(400).json({ error: 'Total of specified amounts must equal the expense amount' });
+            }
+
             calculatedParticipants = participants;
         } else if (splitMethod === 'percentage') {
+            const totalPercentage = participants.reduce((sum, participant) => sum + participant.percentage, 0);
+            
+            if (totalPercentage !== 100) {
+                return res.status(400).json({ error: 'Total percentage must be 100' });
+            }
+
             calculatedParticipants = participants.map(participant => ({
                 userId: participant.userId,
                 amount: amount * (participant.percentage / 100)
