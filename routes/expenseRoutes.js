@@ -1,11 +1,11 @@
 const express = require('express');
-const { addExpense, getIndividualExpenses, getOverallExpenses, downloadBalanceSheet } = require('../controllers/expenseController');
-const auth = require('../middlewares/authMiddleware');
 const router = express.Router();
+const { addExpense, getIndividualExpenses, getOverallExpenses, downloadBalanceSheet } = require('../controllers/expenseController');
+const authMiddleware = require('../middleware/authMiddleware');
 
-router.post('/expenses', auth, addExpense);
-router.get('/expenses', auth, getIndividualExpenses);
-router.get('/expenses/overall', auth, getOverallExpenses);
-router.get('/expenses/balance-sheet', auth, downloadBalanceSheet);
+router.post('/', authMiddleware, addExpense);
+router.get('/', authMiddleware, getIndividualExpenses);
+router.get('/overall', authMiddleware, getOverallExpenses);
+router.get('/balance-sheet', authMiddleware, downloadBalanceSheet);
 
 module.exports = router;
