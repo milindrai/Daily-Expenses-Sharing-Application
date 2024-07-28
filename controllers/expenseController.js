@@ -63,10 +63,19 @@ exports.addExpense = async (req, res) => {
 // Controller to get individual expense for the logged-in user
 exports.getIndividualExpenses = async (req, res) => {
     try {
+        // Fetching expenses where the logged-in user is a participant
         const expenses = await Expense.find({ 'participants.userId': req.user.id });
-        res.status(200).json(expenses);
+        
+        // Calculate the total amount spent by the user
+        const totalAmountSpent = expenses.reduce((total, expense) => {
+            const participant = expense.participants.find(p => p.userId.toString() === req.user.id);
+            return total + (participant ? participant.amount : 0);
+        }, 0);
+
+        // Sending the fetched expenses and total amount spent as a JSON response
+        res.status(200).json({ expenses, totalAmountSpent });
     } catch (error) {
-        // Handle any server errors
+        // Handling any server errors
         res.status(500).json({ error: error.message });
     }
 };
@@ -74,10 +83,16 @@ exports.getIndividualExpenses = async (req, res) => {
 // Controller to get overall expenses
 exports.getOverallExpenses = async (req, res) => {
     try {
+        // Fetch all expenses from the database
         const expenses = await Expense.find({});
-        res.status(200).json(expenses);
+        
+        // Calculate the total amount spent across all expenses
+        const totalAmountSpent = expenses.reduce((total, expense) => total + expense.amount, 0);
+
+        // Sending the fetched expenses and total amount spent as a JSON response
+        res.status(200).json({ expenses, totalAmountSpent });
     } catch (error) {
-        // Handle any server errors
+        // Handling any server errors
         res.status(500).json({ error: error.message });
     }
 };
