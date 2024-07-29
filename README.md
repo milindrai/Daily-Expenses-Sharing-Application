@@ -1,4 +1,4 @@
-# Expense Sharing App
+# Daily Expense Sharing Application
 
 A backend application for managing and sharing daily expenses among participants, built with Node.js, Express, and MongoDB.
 
