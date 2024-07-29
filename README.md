@@ -9,6 +9,7 @@ A backend application for managing and sharing daily expenses among participants
 - **Individual Expenses**: View expenses for individual users and calculate the total amount spent.
 - **Overall Expenses**: View all expenses and calculate the total amount spent across all users.
 - **Balance Sheet**: Download a balance sheet of expenses.
+- **Optimized Database Queries**
 
 ## Technologies Used
 
