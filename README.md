@@ -22,8 +22,8 @@ A backend application for managing and sharing daily expenses among participants
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/milindrai/expenses-sharing-app.git
-   cd expenses-sharing-app
+   git clone https://github.com/milindrai/daily-expenses-sharing-application.git
+   cd daily-expenses-sharing-application
    
 2. Install dependencies:
    ```sh
