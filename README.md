@@ -38,7 +38,7 @@ A backend application for managing and sharing daily expenses among participants
 
 4. Start the server:
    ```sh
-   npm start
+   node app.js
 
 
 ## Endpoints
